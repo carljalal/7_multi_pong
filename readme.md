@@ -1,3 +1,10 @@
+# simple version:
+1) three squares ("balls")
+2) three rectangles ("paddles")
+3) four or five walls for balls to bounce off of
+4) paddle must hit matching ball while identity is hidden
+
+
 # similar to:
 1) ping pong
 2) RTS
