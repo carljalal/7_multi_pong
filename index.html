@@ -9,10 +9,13 @@ instructionsDiv = document.createElement("div");
 document.body.append(instructionsDiv);
 instructionsDiv.innerHTML = "Welcome to Multi Pong!";
 
+
+
 // start button
 startButton = document.createElement("button");
 document.body.append(startButton);
 startButton.innerText = "Start!";
+
 
 
 // stop button
@@ -84,6 +87,8 @@ cursorPaddleIntersect = (cursorX,cursorY) => {
 }
 
 
+
+
 // move direction functions
 moveLeft = (object, amount=1) => {
     object.x -= amount;
@@ -117,13 +122,17 @@ refreshBoundingBox = (object) => {
 }
 
 
+
+
 // put collision logic
 collisionUpdate = () => {
     // loop balls
     balls.forEach(ball => {
         // inner loop walls
         walls.forEach(wall => {
-            if (boxIntersectsBo)
+            if (boxIntersectsBox(ball,wall)){
+                // change ball direction
+            }
         })
 
         // inner loop paddles
@@ -137,6 +146,8 @@ collisionUpdate = () => {
         })
     });
 }
+
+
 
 // simple draw
 drawRect = (object) => {
@@ -176,6 +187,9 @@ canvasElement.onClick = () => {
 
 }
 
+
+
+
 // put keypress logic -- paddle movement commands
 canvasElement.onkeydown = (event) => {
     if (paddleSelected != null) {
@@ -186,6 +200,7 @@ canvasElement.onkeydown = (event) => {
         if(event.key == "ArrowRight" ) paddle[paddleSelected].moveRight();
         if(event.key == "ArrowUp"    ) paddle[paddleSelected].moveRight();
         if(event.key == "ArrowDown"  ) paddle[paddleSelected].moveRight();
+        if(event.key == "q"  )         paddleSelected = null;
     }
 }
 
