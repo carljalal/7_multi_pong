@@ -1,27 +1,115 @@
 <html>
-    <body>
-        <script>
+<body>
+<script>
+
+
+
 // put div for instructions
 instructionsDiv = document.createElement("div");
 document.body.append(instructionsDiv);
 instructionsDiv.innerHTML = "Welcome to Multi Pong!";
-// put all options settings (radios, slider, textboxes, buttons)
 
+
+
+
+// put all options settings (radios, slider, textboxes, buttons)
+defaultBallSpeed = 1;
+defaultUpdateSpeed = 10;
+defaultCanvasHeight = "500px";
+defaultCanvasWidth =  "500px";
+paddleSelected = null;
 
 
 // put canvas
+canvasElement = document.createElement("canvas");
+document.body.append(canvasElement);
+canvasElement.style.width = defaultCanvasWidth;
+canvasElement.style.height= defaultCanvasHeight;
 
 
 // put global variables
+balls = [{},{},{}]
+walls = [{},{},{},{},{}]
+paddles=[{},{},{},{}]
+
+
+
 
 // put timerloop
+mainLoop = () => {
+
+}
+setInterval(mainLoop, defaultUpdateSpeed);
+
+
+// intersects bounding box
+intersectsBoundingBox = (box, x, y) => {
+    if (x > box.minX && x < box.maxX && y > box.minY && y < box.maxY) {
+        return true;
+    }
+    else return false;
+}
+
+
+
+// paddle intersect
+cursorPaddleIntersect = (cursorX,cursorY) => {
+    // loop check bounding box
+    paddles.forEach(paddle, index => {
+        // check cursor in bounding box
+        
+    });
+}
+
+
+// paddle move command
+paddleMove = (paddleId, paddleDirection) => {
+
+}
+
 
 // put collision logic
+collisionUpdate = () => {
+
+}
+
+
+// put canvas draw calls
+updateGraphics = () => {
+    // draw balls
+
+    // draw walls
+
+    // draw paddles
+}
+
+
 
 // put click logic
+canvasElement.onClick = () => {
+    // switch between
+
+    // paddle select
+
+    // paddle move
+
+
+}
+
+// put keypress logic
+canvasElement.onkeydown = () => {
+    if (paddleSelected != null) {
+
+    }
+}
+
+
 
 // put settings logic
 
-        </script>
-    </body>
+
+
+
+</script>
+</body>
 </html>
