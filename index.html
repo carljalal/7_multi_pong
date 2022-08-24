@@ -9,6 +9,16 @@ instructionsDiv = document.createElement("div");
 document.body.append(instructionsDiv);
 instructionsDiv.innerHTML = "Welcome to Multi Pong!";
 
+// start button
+startButton = document.createElement("button");
+document.body.append(startButton);
+startButton.innerText = "Start!";
+
+
+// stop button
+stopButton = document.createElement("button");
+document.body.append(stopButton);
+stopButton.innerText = "Stop!";
 
 
 
@@ -67,26 +77,32 @@ cursorPaddleIntersect = (cursorX,cursorY) => {
     // loop check bounding box
     paddles.forEach(paddle, index => {
         // check cursor in bounding box
-        
+        if (pointIntersectsBox(paddle,cursorX,cursorY)){
+            paddleSelected = index;
+        }
     });
 }
 
 
-// move functions
-moveLeft = (object) => {
-
+// move direction functions
+moveLeft = (object, amount=1) => {
+    object.x -= amount;
+    refreshBoundingBox(object);
 }
 
-moveRight = (object) => {
-
+moveRight = (object, amount=1) => {
+    object.x += amount;
+    refreshBoundingBox(object);
 }
 
-moveUp = (object) => {
-
+moveUp = (object, amount=1) => {
+    object.y -= amount;
+    refreshBoundingBox(object);
 }
 
-moveDown = (object) => {
-    
+moveDown = (object, amount=1) => {
+    object.x += amount;
+    refreshBoundingBox(object);
 }
 
 
@@ -149,7 +165,7 @@ updateGraphics = () => {
 
 
 
-// put click logic
+// put click logic -- paddle movement commands
 canvasElement.onClick = () => {
     // switch between
     
@@ -160,7 +176,7 @@ canvasElement.onClick = () => {
 
 }
 
-// put keypress logic
+// put keypress logic -- paddle movement commands
 canvasElement.onkeydown = (event) => {
     if (paddleSelected != null) {
         return;
