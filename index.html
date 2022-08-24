@@ -20,17 +20,20 @@ defaultCanvasWidth =  "500px";
 paddleSelected = null;
 
 
+
 // put canvas
 canvasElement = document.createElement("canvas");
 document.body.append(canvasElement);
 canvasElement.style.width = defaultCanvasWidth;
 canvasElement.style.height= defaultCanvasHeight;
+ctx = canvasElement.getContext("2d");
 
 
 // put global variables
-balls = [{},{},{}]
-walls = [{},{},{},{},{}]
-paddles=[{},{},{},{}]
+balls    = [{},{},{}]
+walls    = [{},{},{},{},{}]
+paddles  = [{},{},{},{}]
+oobAreas = [{},{},{},{}]
 
 
 
@@ -43,11 +46,18 @@ setInterval(mainLoop, defaultUpdateSpeed);
 
 
 // intersects bounding box
-intersectsBoundingBox = (box, x, y) => {
-    if (x > box.minX && x < box.maxX && y > box.minY && y < box.maxY) {
+pointIntersectsBox = (x, y, box) => {
+    if (x >= box.minX && x <= box.maxX && y >= box.minY && y <= box.maxY) {
         return true;
     }
     else return false;
+}
+
+boxIntersectsBox = (box1, box2) => {
+    if (box1.maxX < box2.minX || box1.minX > box2.maxX || box1.maxY < box2.minY || box1.minY > box2.maxY) {
+        return false;
+    }
+    else return true;
 }
 
 
@@ -62,25 +72,79 @@ cursorPaddleIntersect = (cursorX,cursorY) => {
 }
 
 
-// paddle move command
-paddleMove = (paddleId, paddleDirection) => {
+// move functions
+moveLeft = (object) => {
 
+}
+
+moveRight = (object) => {
+
+}
+
+moveUp = (object) => {
+
+}
+
+moveDown = (object) => {
+    
+}
+
+
+
+// set bounding box
+refreshBoundingBox = (object) => {
+    object.minX = object.x - object.radiusHorizontal;
+    object.maxX = object.x + object.radiusHorizontal;
+
+    object.minY = object.y - object.radiusVertical;
+    object.maxY = object.y + object.radiusVertical;
 }
 
 
 // put collision logic
 collisionUpdate = () => {
+    // loop balls
+    balls.forEach(ball => {
+        // inner loop walls
+        walls.forEach(wall => {
+            if (boxIntersectsBo)
+        })
 
+        // inner loop paddles
+        paddles.forEach(paddle => {
+
+        })
+
+        // inner loop out of bounds areas
+        oobArea.forEach(area => {
+
+        })
+    });
 }
+
+// simple draw
+drawRect = (object) => {
+    ctx.fillStyle = object.color;
+    ctx.fillRect(object.minX, object.minY, object.maxX - object.minX, object.maxY - object.minY);
+}
+
+
 
 
 // put canvas draw calls
 updateGraphics = () => {
+    // clear canvas
+    ctx.clearRect(0,0,canvasElement.width,canvasElement.height);
+    
     // draw balls
 
+    
     // draw walls
 
+
     // draw paddles
+
+
 }
 
 
@@ -88,7 +152,7 @@ updateGraphics = () => {
 // put click logic
 canvasElement.onClick = () => {
     // switch between
-
+    
     // paddle select
 
     // paddle move
@@ -97,9 +161,15 @@ canvasElement.onClick = () => {
 }
 
 // put keypress logic
-canvasElement.onkeydown = () => {
+canvasElement.onkeydown = (event) => {
     if (paddleSelected != null) {
-
+        return;
+    }
+    else {
+        if(event.key == "ArrowLeft"  ) paddle[paddleSelected].moveLeft();
+        if(event.key == "ArrowRight" ) paddle[paddleSelected].moveRight();
+        if(event.key == "ArrowUp"    ) paddle[paddleSelected].moveRight();
+        if(event.key == "ArrowDown"  ) paddle[paddleSelected].moveRight();
     }
 }
 
