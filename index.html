@@ -5,6 +5,10 @@
 // onButton (idea for later)
 // storyEngine (idea for later)
 // address game -- references to references, spatial find -- zoomin tree -- grid? (idea for later)
+// range-matcher (genetic algorithm)
+
+
+
 
 /// put div for instructions
 instructionsDiv = document.createElement("div");
@@ -230,9 +234,17 @@ canvasElement.onClick = () => {
     // switch between
     
     // paddle select
-
-    // paddle move
-
+    if (paddleSelected == null){
+        paddles.forEach(paddle, index =>{
+            if(pointIntersectsBox(event.x, event.y, paddle)){
+                paddleSelected = index;
+            }
+        })
+    }
+    // paddle move -- set direction and destination
+    else {
+        
+    }
 
 }
 
