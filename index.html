@@ -2,7 +2,9 @@
 <body>
 <script>
 // abstract game editor (idea for later)
-
+// onButton (idea for later)
+// storyEngine (idea for later)
+// address game -- references to references, spatial find -- zoomin tree -- grid? (idea for later)
 
 /// put div for instructions
 instructionsDiv = document.createElement("div");
@@ -53,7 +55,8 @@ oobAreas = [{name:"left",x:-50,y:250,w:50,h:500},{name:"right",x:550,y:250,w:50,
 
 /// put timerloop
 mainLoop = () => {
-
+    collisionUpdate();
+    
 }
 setInterval(mainLoop, defaultUpdateSpeed);
 
@@ -110,6 +113,22 @@ moveDown = (object, amount=1) => {
     refreshBoundingBox(object);
 }
 
+moveIt = (object) => {
+    if (object.dirX == "left")  moveLeft(object);
+    if (object.dirX == "right") moveRight(object);
+    if (object.dirY == "up")    moveUp(object);
+    if (object.dirY == "down")  moveDown(object);
+}
+
+moveUpdate = () => {
+    balls.forEach(ball => {
+        moveIt(ball);
+    })
+    paddles.forEach(paddle => {
+        moveIt(paddle);
+    })
+}
+
 
 
 /// set bounding box
@@ -127,6 +146,21 @@ reverseDirection = (object) => {
     object.dirX = object.dirX == "left" ? "right" : "left";
     object.dirY = object.dirY == "up" ? "down" : "up";
 }
+
+
+
+// destination check
+atDestination = (object) => {
+    return (object.x == object.destX && object.y == object.destY)
+}
+
+fixDirection = (object) => {
+    if (atDestination(object)) {
+        object.dirX == null;
+        object.dirY == null;
+    }
+}
+
 
 
 /// put collision logic
