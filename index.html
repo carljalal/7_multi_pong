@@ -122,6 +122,11 @@ refreshBoundingBox = (object) => {
 }
 
 
+/// reverse direction
+reverseDirection = (object) => {
+    object.dirX = object.dirX == "left" ? "right" : "left";
+    object.dirY = object.dirY == "up" ? "down" : "up";
+}
 
 
 /// put collision logic
