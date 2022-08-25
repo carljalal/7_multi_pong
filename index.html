@@ -198,8 +198,8 @@ canvasElement.onkeydown = (event) => {
     else {
         if(event.key == "ArrowLeft"  ) paddle[paddleSelected].moveLeft();
         if(event.key == "ArrowRight" ) paddle[paddleSelected].moveRight();
-        if(event.key == "ArrowUp"    ) paddle[paddleSelected].moveRight();
-        if(event.key == "ArrowDown"  ) paddle[paddleSelected].moveRight();
+        if(event.key == "ArrowUp"    ) paddle[paddleSelected].moveUp();
+        if(event.key == "ArrowDown"  ) paddle[paddleSelected].moveDown();
         if(event.key == "q"  )         paddleSelected = null;
     }
 }
