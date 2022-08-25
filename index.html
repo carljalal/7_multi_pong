@@ -76,6 +76,8 @@ initializeAll = () => {
     // initialize colors to black
     balls.forEach(ball => {
         ball.color = "black";
+        ball.w = 5;
+        ball.h = 5;
         refreshBoundingBox(ball);
     });
     walls.forEach(wall => {
