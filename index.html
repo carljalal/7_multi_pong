@@ -75,6 +75,7 @@ initializeAll();
 mainLoop = () => {
     moveUpdate();
     collisionUpdate();
+    
 }
 setInterval(mainLoop, defaultUpdateSpeed);
 
@@ -226,7 +227,7 @@ drawRect = (object) => {
 
 
 /// put canvas draw calls
-updateGraphics = () => {
+drawUpdate = () => {
     // clear canvas
     ctx.clearRect(0,0,canvasElement.width,canvasElement.height);
     
@@ -234,10 +235,10 @@ updateGraphics = () => {
     balls.forEach(ball => drawRect(ball));
     
     // draw walls
-    walls.forEach(ball => drawRect(ball));
+    walls.forEach(wall => drawRect(wall));
 
     // draw paddles
-    paddles.forEach(ball => drawRect(ball));
+    paddles.forEach(paddle => drawRect(paddle));
 
 }
 
