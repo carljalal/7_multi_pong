@@ -58,6 +58,19 @@ oobAreas = [{name:"left",x:-50,y:250,w:50,h:500},{name:"right",x:550,y:250,w:50,
 
 
 
+
+/// set bounding box
+refreshBoundingBox = (object) => {
+    object.minX = object.x - object.w;
+    object.maxX = object.x + object.w;
+
+    object.minY = object.y - object.h;
+    object.maxY = object.y + object.h;
+}
+
+
+
+
 // initialization loops
 initializeAll = () => {
     // initialize colors to black
@@ -178,14 +191,7 @@ moveUpdate = () => {
 
 
 
-/// set bounding box
-refreshBoundingBox = (object) => {
-    object.minX = object.x - object.w;
-    object.maxX = object.x + object.w;
 
-    object.minY = object.y - object.h;
-    object.maxY = object.y + object.h;
-}
 
 
 /// reverse direction
