@@ -55,8 +55,8 @@ oobAreas = [{name:"left",x:-50,y:250,w:50,h:500},{name:"right",x:550,y:250,w:50,
 
 /// put timerloop
 mainLoop = () => {
+    moveUpdate();
     collisionUpdate();
-    
 }
 setInterval(mainLoop, defaultUpdateSpeed);
 
