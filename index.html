@@ -120,12 +120,29 @@ moveIt = (object) => {
     if (object.dirY == "down")  moveDown(object);
 }
 
+
+
+// destination check
+atDestination = (object) => {
+    return (object.x == object.destX && object.y == object.destY)
+}
+
+fixDirection = (object) => {
+    if (atDestination(object)) {
+        object.dirX == null;
+        object.dirY == null;
+    }
+}
+
+
+// general move all iterations
 moveUpdate = () => {
     balls.forEach(ball => {
         moveIt(ball);
     })
     paddles.forEach(paddle => {
         moveIt(paddle);
+        fixDirection(paddle); // if paddle has reached destination, set directions to null
     })
 }
 
@@ -149,17 +166,6 @@ reverseDirection = (object) => {
 
 
 
-// destination check
-atDestination = (object) => {
-    return (object.x == object.destX && object.y == object.destY)
-}
-
-fixDirection = (object) => {
-    if (atDestination(object)) {
-        object.dirX == null;
-        object.dirY == null;
-    }
-}
 
 
 
