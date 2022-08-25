@@ -61,9 +61,20 @@ oobAreas = [{name:"left",x:-50,y:250,w:50,h:500},{name:"right",x:550,y:250,w:50,
 // initialization loops
 initializeAll = () => {
     // initialize colors to black
-    balls.forEach(ball => ball.color = "black");
-    walls.forEach(wall => wall.color = "black");
-    paddles.forEach(paddle => paddle.color = "black");
+    balls.forEach(ball => {
+        ball.color = "black";
+        refreshBoundingBox(ball);
+    });
+    walls.forEach(wall => {
+        wall.color = "black";
+        refreshBoundingBox(wall);
+        
+    });
+    paddles.forEach(paddle => {
+        paddle.color = "black";
+        refreshBoundingBox(paddle);
+        
+    });
 }
 initializeAll();
 
@@ -209,7 +220,7 @@ collisionUpdate = () => {
         })
 
         // inner loop out of bounds areas
-        oobArea.forEach(area => {
+        oobAreas.forEach(area => {
 
         })
     });
