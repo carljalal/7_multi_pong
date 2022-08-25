@@ -1,31 +1,31 @@
 <html>
 <body>
 <script>
+// abstract game editor (idea for later)
 
 
-
-// put div for instructions
+/// put div for instructions
 instructionsDiv = document.createElement("div");
 document.body.append(instructionsDiv);
 instructionsDiv.innerHTML = "Welcome to Multi Pong!";
 
 
 
-// start button
+/// start button
 startButton = document.createElement("button");
 document.body.append(startButton);
 startButton.innerText = "Start!";
 
 
 
-// stop button
+/// stop button
 stopButton = document.createElement("button");
 document.body.append(stopButton);
 stopButton.innerText = "Stop!";
 
 
 
-// put all options settings (radios, slider, textboxes, buttons)
+/// put all options settings (radios, slider, textboxes, buttons)
 defaultBallSpeed = 1;
 defaultUpdateSpeed = 10;
 defaultCanvasHeight = "500px";
@@ -34,7 +34,7 @@ paddleSelected = null;
 
 
 
-// put canvas
+/// put canvas
 canvasElement = document.createElement("canvas");
 document.body.append(canvasElement);
 canvasElement.style.width = defaultCanvasWidth;
@@ -42,23 +42,23 @@ canvasElement.style.height= defaultCanvasHeight;
 ctx = canvasElement.getContext("2d");
 
 
-// put global variables
-balls    = [{},{},{}]
-walls    = [{},{},{},{},{}]
-paddles  = [{},{},{},{}]
-oobAreas = [{},{},{},{}]
+/// put global variables
+balls    = [{name:"first",x:100,y:100},{name:"second",x:200,y:200},{name:"third",x:300,y:300}]
+walls    = [{name:"left",x:10,y:250,w:5,h:250},{name:"right",x:490,y:250,w:5,h:250},{name:"bottom",x:250,y:10,w:250,h:5},{name:"top",x:250,y:490,w:250,h:5},{name:"middle",x:300, y:300,w:5,h:60}]
+paddles  = [{name:"first",x:100,y:30,h:10,w:20},{name:"second",x:200,y:30,h:10,w:20},{name:"third",x:300,y:30,h:10,w:20}]
+oobAreas = [{name:"left",x:-50,y:250,w:50,h:500},{name:"right",x:550,y:250,w:50,h:500},{name:"bottom",x:250,y:-50,w:500,h:50},{name:"top",x:250,y:550,w:500,h:50}]
 
 
 
 
-// put timerloop
+/// put timerloop
 mainLoop = () => {
 
 }
 setInterval(mainLoop, defaultUpdateSpeed);
 
 
-// intersects bounding box
+/// intersects bounding box
 pointIntersectsBox = (x, y, box) => {
     if (x >= box.minX && x <= box.maxX && y >= box.minY && y <= box.maxY) {
         return true;
@@ -75,7 +75,7 @@ boxIntersectsBox = (box1, box2) => {
 
 
 
-// paddle intersect
+/// paddle intersect
 cursorPaddleIntersect = (cursorX,cursorY) => {
     // loop check bounding box
     paddles.forEach(paddle, index => {
@@ -89,7 +89,7 @@ cursorPaddleIntersect = (cursorX,cursorY) => {
 
 
 
-// move direction functions
+/// move direction functions
 moveLeft = (object, amount=1) => {
     object.x -= amount;
     refreshBoundingBox(object);
@@ -112,19 +112,19 @@ moveDown = (object, amount=1) => {
 
 
 
-// set bounding box
+/// set bounding box
 refreshBoundingBox = (object) => {
-    object.minX = object.x - object.radiusHorizontal;
-    object.maxX = object.x + object.radiusHorizontal;
+    object.minX = object.x - object.w;
+    object.maxX = object.x + object.w;
 
-    object.minY = object.y - object.radiusVertical;
-    object.maxY = object.y + object.radiusVertical;
+    object.minY = object.y - object.h;
+    object.maxY = object.y + object.h;
 }
 
 
 
 
-// put collision logic
+/// put collision logic
 collisionUpdate = () => {
     // loop balls
     balls.forEach(ball => {
@@ -149,7 +149,7 @@ collisionUpdate = () => {
 
 
 
-// simple draw
+/// simple draw
 drawRect = (object) => {
     ctx.fillStyle = object.color;
     ctx.fillRect(object.minX, object.minY, object.maxX - object.minX, object.maxY - object.minY);
@@ -158,25 +158,25 @@ drawRect = (object) => {
 
 
 
-// put canvas draw calls
+/// put canvas draw calls
 updateGraphics = () => {
     // clear canvas
     ctx.clearRect(0,0,canvasElement.width,canvasElement.height);
     
     // draw balls
-
+    balls.forEach(ball => drawRect(ball));
     
     // draw walls
-
+    walls.forEach(ball => drawRect(ball));
 
     // draw paddles
-
+    paddles.forEach(ball => drawRect(ball));
 
 }
 
 
 
-// put click logic -- paddle movement commands
+/// put click logic -- paddle movement commands
 canvasElement.onClick = () => {
     // switch between
     
@@ -190,7 +190,7 @@ canvasElement.onClick = () => {
 
 
 
-// put keypress logic -- paddle movement commands
+/// put keypress logic -- paddle movement commands
 canvasElement.onkeydown = (event) => {
     if (paddleSelected != null) {
         return;
