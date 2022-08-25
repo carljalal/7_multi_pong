@@ -177,6 +177,7 @@ collisionUpdate = () => {
         walls.forEach(wall => {
             if (boxIntersectsBox(ball,wall)){
                 // change ball direction
+                reverseDirection(ball);
             }
         })
 
