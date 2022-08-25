@@ -183,7 +183,10 @@ collisionUpdate = () => {
 
         // inner loop paddles
         paddles.forEach(paddle => {
-
+            if (boxIntersectsBox(ball,paddle)){
+                // change ball direction
+                reverseDirection(ball);
+            }
         })
 
         // inner loop out of bounds areas
