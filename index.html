@@ -124,6 +124,11 @@ startButton.onClick = () => {
     setInterval(mainLoop, defaultUpdateSpeed);
 }
 
+stopButton.onClick = () => {
+    clearInterval(mainLoop);
+    initializeAll();
+}
+
 
 /// intersects bounding box
 pointIntersectsBox = (x, y, box) => {
