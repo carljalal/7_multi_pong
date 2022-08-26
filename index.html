@@ -83,6 +83,8 @@ refreshBoundingBox = (object) => {
 initializeAll = () => {
     // initialize colors to black
     balls.forEach(ball => {
+        ball.dirX = "right";
+        ball.dirY = "down";
         ball.color = "red";
         ball.w = 5;
         ball.h = 5;
