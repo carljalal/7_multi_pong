@@ -47,12 +47,14 @@ document.body.append(canvasElement);
 canvasElement.style.width = defaultCanvasWidth;
 canvasElement.style.height= defaultCanvasHeight;
 canvasElement.style.border= defaultCanvasBorder;
+canvasElement.width = 500;
+canvasElement.height = 500;
 ctx = canvasElement.getContext("2d");
 
 
 /// put global variables
 balls    = [{name:"first",x:100,y:100},{name:"second",x:200,y:200},{name:"third",x:300,y:300}]
-walls    = [{name:"left",x:10,y:250,w:5,h:250},{name:"right",x:490,y:250,w:5,h:250},{name:"bottom",x:250,y:10,w:250,h:5},{name:"top",x:250,y:490,w:250,h:5},{name:"middle",x:300, y:300,w:5,h:60}]
+walls    = [{name:"left",x:10,y:250,w:5,h:250},{name:"right",x:490,y:250,w:5,h:250},{name:"bottom",x:250,y:10,w:250,h:5},{name:"top",x:250,y:490,w:250,h:5},{name:"middle",x:250, y:250,w:5,h:60}]
 paddles  = [{name:"first",x:100,y:30,h:10,w:20},{name:"second",x:200,y:30,h:10,w:20},{name:"third",x:300,y:30,h:10,w:20}]
 oobAreas = [{name:"left",x:-50,y:250,w:50,h:500},{name:"right",x:550,y:250,w:50,h:500},{name:"bottom",x:250,y:-50,w:500,h:50},{name:"top",x:250,y:550,w:500,h:50}]
 
