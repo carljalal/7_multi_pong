@@ -7,14 +7,16 @@
 // address game -- references to references, spatial find -- zoomin tree -- grid? (idea for later)
 // range-matcher (genetic algorithm)
 
-
+document.body.style.fontFamily = "Verdana";
 
 
 /// put div for instructions
 instructionsDiv = document.createElement("div");
 document.body.append(instructionsDiv);
-instructionsDiv.innerHTML = "Welcome to Multi Pong!<br>Select paddle: click on paddle<br>Deselect paddle: hit Q<br>Move paddle: Click or use arrow keys";
+instructionsDiv.innerHTML = "Welcome to <span class=\"emphasis\">Multi Pong!</span><br>Select paddle: click on paddle<br>Deselect paddle: hit Q<br>Move paddle: Click or use arrow keys";
 
+emphasisSpan = document.querySelectorAll(".emphasis")
+emphasisSpan.forEach(element => {element.style.color = "Orange"; element.style.fontWeight = 900})
 
 
 /// start button
