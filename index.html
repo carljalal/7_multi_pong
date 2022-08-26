@@ -280,6 +280,7 @@ canvasElement.onClick = () => {
         paddles.forEach(paddle, index =>{
             if(pointIntersectsBox(event.x, event.y, paddle)){
                 paddleSelected = index;
+                paddle.isSelected = true;
             }
         })
     }
