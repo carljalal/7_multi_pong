@@ -77,7 +77,7 @@ refreshBoundingBox = (object) => {
 initializeAll = () => {
     // initialize colors to black
     balls.forEach(ball => {
-        ball.color = "black";
+        ball.color = "red";
         ball.w = 5;
         ball.h = 5;
         refreshBoundingBox(ball);
@@ -88,7 +88,9 @@ initializeAll = () => {
         
     });
     paddles.forEach(paddle => {
-        paddle.color = "black";
+        paddle.color = "navy";
+        paddle.isSelected = false;
+        paddle.isSelectedColor = "green";
         refreshBoundingBox(paddle);
         
     });
