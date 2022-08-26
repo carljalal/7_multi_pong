@@ -115,7 +115,10 @@ mainLoop = () => {
     collisionUpdate();
     drawUpdate();
 }
-setInterval(mainLoop, defaultUpdateSpeed);
+
+startButton.onClick = () => {
+    setInterval(mainLoop, defaultUpdateSpeed);
+}
 
 
 /// intersects bounding box
