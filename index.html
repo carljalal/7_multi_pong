@@ -63,7 +63,7 @@ balls    = []
 walls    = []
 paddles  = []
 oobAreas = []
-
+timerInterval = null;
 
 
 /// set bounding box
@@ -120,14 +120,17 @@ mainLoop = () => {
     drawUpdate();
 }
 
-startButton.onClick = () => {
-    setInterval(mainLoop, defaultUpdateSpeed);
-}
+startButton.addEventListener('click', () => {
+    if (timerInterval != null) return;
+    timerInterval = setInterval(mainLoop, defaultUpdateSpeed);
+});
 
-stopButton.onClick = () => {
-    clearInterval(mainLoop);
+stopButton.addEventListener('click', () => {
+    clearInterval(timerInterval);
+    timerInterval = null;
     initializeAll();
-}
+    drawUpdate();
+});
 
 
 /// intersects bounding box
@@ -284,7 +287,7 @@ drawUpdate = () => {
     paddles.forEach(paddle => drawRect(paddle));
 
 }
-
+drawUpdate();
 
 
 /// put click logic -- paddle movement commands
