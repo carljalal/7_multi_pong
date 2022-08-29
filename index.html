@@ -84,6 +84,7 @@ initializeAll = () => {
     walls    = [{name:"left",x:10,y:250,w:5,h:250},{name:"right",x:490,y:250,w:5,h:250},{name:"bottom",x:250,y:10,w:250,h:5},{name:"top",x:250,y:490,w:250,h:5},{name:"middle",x:250, y:200,w:5,h:60}]
     paddles  = [{name:"first",x:150,y:470,h:10,w:20},{name:"second",x:250,y:470,h:10,w:20},{name:"third",x:350,y:470,h:10,w:20}]
     oobAreas = [{name:"left",x:-50,y:250,w:50,h:500},{name:"right",x:550,y:250,w:50,h:500},{name:"bottom",x:250,y:-50,w:500,h:50},{name:"top",x:250,y:550,w:500,h:50}]
+    paddleSelected = null;
 
     // initialize colors to black
     balls.forEach(ball => {
@@ -265,7 +266,12 @@ collisionUpdate = () => {
 
 /// simple draw
 drawRect = (object) => {
-    ctx.fillStyle = object.color;
+    if (object.isSelected){
+        ctx.fillStyle = object.isSelectedColor;
+    }
+    else {
+        ctx.fillStyle = object.color;
+    }
     ctx.fillRect(object.minX, object.minY, object.maxX - object.minX, object.maxY - object.minY);
 }
 
@@ -291,13 +297,16 @@ drawUpdate();
 
 
 /// put click logic -- paddle movement commands
-canvasElement.onClick = () => {
+canvasElement.addEventListener('click', () => {
+    if (timerInterval == null) return; // if game has not started
     // switch between
-    
-    // paddle select
+    rect = canvasElement.getBoundingClientRect();
+    x = event.x - rect.left;
+    y = event.y - rect.top;
+    // paddle select                                                                                                                                                                                                                                                                                                                                                    
     if (paddleSelected == null){
-        paddles.forEach(paddle, index =>{
-            if(pointIntersectsBox(event.x, event.y, paddle)){
+        paddles.forEach((paddle, index) =>{
+            if(pointIntersectsBox(x, y, paddle)){
                 paddleSelected = index;
                 paddle.isSelected = true;
             }
@@ -308,24 +317,31 @@ canvasElement.onClick = () => {
         
     }
 
-}
+});
 
 
 
 
 /// put keypress logic -- paddle movement commands
-canvasElement.onkeydown = (event) => {
-    if (paddleSelected != null) {
+document.addEventListener('keydown', (event) => {
+    if (paddleSelected == null) {
         return;
     }
     else {
-        if(event.key == "ArrowLeft"  ) paddle[paddleSelected].moveLeft();
-        if(event.key == "ArrowRight" ) paddle[paddleSelected].moveRight();
-        if(event.key == "ArrowUp"    ) paddle[paddleSelected].moveUp();
-        if(event.key == "ArrowDown"  ) paddle[paddleSelected].moveDown();
-        if(event.key == "q"  )         paddleSelected = null;
+        if(event.key == "ArrowLeft"  ) paddle[paddleSelected].dirX = "left";
+        if(event.key == "ArrowRight" ) paddle[paddleSelected].dirX = "right";
+        if(event.key == "ArrowUp"    ) paddle[paddleSelected].dirY = "up";
+        if(event.key == "ArrowDown"  ) paddle[paddleSelected].dirY = "down";
+        if(event.key == "q"  )         {
+            paddleSelected = null;
+            paddle[paddleSelected].dirX = null;
+            paddle[paddleSelected].dirY = null;
+        }
     }
-}
+});
+
+
+
 
 
 
