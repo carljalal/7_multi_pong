@@ -352,9 +352,10 @@ document.addEventListener('keyup', (event) => {
         if(event.key == "ArrowUp"    ) paddles[paddleSelected].dirY = null;
         if(event.key == "ArrowDown"  ) paddles[paddleSelected].dirY = null;
         if(event.key == "q"  )         {
-            paddleSelected = null;
+            paddles[paddleSelected].isSelected = false;
             paddles[paddleSelected].dirX = null;
             paddles[paddleSelected].dirY = null;
+            paddleSelected = null;
         }
     }
 });
