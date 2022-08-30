@@ -259,12 +259,13 @@ nonSelfCollision = (object) => {
 // general move all iterations
 moveUpdate = () => {
     balls.forEach(ball => {
-        if(nonSelfCollision(ball)) moveIt(ball);
+        if(!nonSelfCollision(ball)) moveIt(ball);
+        else reverseDirection(ball);
         
     })
     paddles.forEach(paddle => {
         // if there is no collision ahead, move the paddle
-        if(nonSelfCollision(paddle)){
+        if(!nonSelfCollision(paddle)){
             moveIt(paddle);
             if(paddle.clickedDirection) fixDirection(paddle); // if paddle has reached destination, set directions to null
         }
@@ -291,14 +292,14 @@ reverseDirection = (object) => {
 collisionUpdate = () => {
     // loop balls
     balls.forEach(ball => {
-        testBall = {ball};
+        testBall = {...ball};
         moveIt(testBall);
 
         // inner loop walls
         walls.forEach(wall => {
             if (boxIntersectsBox(testBall,wall)){
                 // change ball direction
-                reverseDirection(ball);
+                //reverseDirection(ball);
                 //moveIt(ball);
             }
         })
@@ -307,7 +308,7 @@ collisionUpdate = () => {
         paddles.forEach(paddle => {
             if (boxIntersectsBox(testBall,paddle)){
                 // change ball direction
-                reverseDirection(ball);
+                //reverseDirection(ball);
                 //moveIt(ball);
                 // prevent paddle from running over ball
                 moveResetLast(paddle);
