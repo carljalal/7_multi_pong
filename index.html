@@ -187,7 +187,7 @@ moveDown = (object, amount=1) => {
 }
 
 moveIt = (object) => {
-    
+    saveLastPosition(object);
     if (object.dirX == "left")  moveLeft(object);
     if (object.dirX == "right") moveRight(object);
     if (object.dirY == "up")    moveUp(object);
