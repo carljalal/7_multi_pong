@@ -194,6 +194,11 @@ moveIt = (object) => {
     if (object.dirY == "down")  moveDown(object);
 }
 
+moveResetLast = (object) => {
+    object.x = object.lastX;
+    object.y = object.lastY;
+}
+
 saveLastPosition = (object) => {
     object.lastX = object.x;
     object.lastY = object.y;
@@ -258,6 +263,8 @@ collisionUpdate = () => {
             if (boxIntersectsBox(ball,paddle)){
                 // change ball direction
                 reverseDirection(ball);
+                // prevent paddle from running over ball
+                moveResetLast(paddle);
             }
         })
 
