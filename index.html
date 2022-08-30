@@ -255,6 +255,7 @@ collisionUpdate = () => {
             if (boxIntersectsBox(ball,wall)){
                 // change ball direction
                 reverseDirection(ball);
+                moveIt(ball);
             }
         })
 
@@ -263,6 +264,7 @@ collisionUpdate = () => {
             if (boxIntersectsBox(ball,paddle)){
                 // change ball direction
                 reverseDirection(ball);
+                moveIt(ball);
                 // prevent paddle from running over ball
                 moveResetLast(paddle);
             }
@@ -309,13 +311,27 @@ drawUpdate = () => {
 drawUpdate();
 
 
+
+
+
+getCanvasX = (x) => {
+    rect = canvasElement.getBoundingClientRect();
+    return x - rect.left;
+}
+
+getCanvasY = (y) => {
+    rect = canvasElement.getBoundingClientRect();
+    return y - rect.top;
+}
+
+
 /// put click logic -- paddle movement commands
 canvasElement.addEventListener('click', () => {
     if (timerInterval == null) return; // if game has not started
-    // switch between
-    rect = canvasElement.getBoundingClientRect();
-    x = event.x - rect.left;
-    y = event.y - rect.top;
+    // adjust x,y relative to canvas
+    x = getCanvasX(event.x);
+    y = getCanvasY(event.y);
+
     // paddle select                                                                                                                                                                                                                                                                                                                                                    
     if (paddleSelected == null){
         paddles.forEach((paddle, index) =>{
