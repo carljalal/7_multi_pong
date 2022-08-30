@@ -219,14 +219,29 @@ fixDirection = (object) => {
 }
 
 
+
+collisionAhead = (object) => {
+    testObject = {...object};
+    moveIt(testObject);
+    refreshBoundingBox(testObject);
+    walls.forEach(wall => {if(boxIntersectsBox(testObject,wall)) return true;});
+    balls.forEach(ball => {if(boxIntersectsBox(testObject,ball)) return true;});
+    paddles.forEach(paddle => {if(boxIntersectsBox(testObject,paddle)) return true;});
+    return false;
+}
+
+
 // general move all iterations
 moveUpdate = () => {
     balls.forEach(ball => {
         moveIt(ball);
     })
     paddles.forEach(paddle => {
-        moveIt(paddle);
-        fixDirection(paddle); // if paddle has reached destination, set directions to null
+        // if there is no collision ahead, move the paddle
+        if(!collisionAhead(paddle)){
+            moveIt(paddle);
+            fixDirection(paddle); // if paddle has reached destination, set directions to null
+        }
     })
 }
 
@@ -343,7 +358,8 @@ canvasElement.addEventListener('click', () => {
     }
     // paddle move -- set direction and destination
     else {
-        
+        paddles[paddleSelected].destX = x;
+        paddles[paddleSelected].destY = y;
     }
 
 });
