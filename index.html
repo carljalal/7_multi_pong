@@ -276,7 +276,7 @@ collisionUpdate = () => {
             if (boxIntersectsBox(ball,wall)){
                 // change ball direction
                 reverseDirection(ball);
-                moveIt(ball);
+                //moveIt(ball);
             }
         })
 
@@ -296,6 +296,20 @@ collisionUpdate = () => {
 
         })
     });
+
+    paddles.forEach(paddle => {
+        walls.forEach(wall => {
+            if(boxIntersectsBox(wall,paddle)) moveResetLast(paddle);
+        })
+    });
+
+    paddles.forEach((paddle1,index1) => {
+        paddles.forEach((paddle2,index2) => {
+            if(index1 != index2) {
+                if(boxIntersectsBox(paddle1,paddle2)) moveResetLast(paddle1);
+            }
+        })
+    })
 }
 
 
