@@ -240,7 +240,7 @@ collisionAhead = (object) => {
 // general move all iterations
 moveUpdate = () => {
     balls.forEach(ball => {
-        moveIt(ball);
+        if(!collisionAhead(ball)) moveIt(ball);
     })
     paddles.forEach(paddle => {
         // if there is no collision ahead, move the paddle
@@ -271,7 +271,9 @@ reverseDirection = (object) => {
 collisionUpdate = () => {
     // loop balls
     balls.forEach(ball => {
+        if(collisionAhead(ball)) reverseDirection(ball);
         // inner loop walls
+        /*
         walls.forEach(wall => {
             if (boxIntersectsBox(ball,wall)){
                 // change ball direction
@@ -285,12 +287,12 @@ collisionUpdate = () => {
             if (boxIntersectsBox(ball,paddle)){
                 // change ball direction
                 reverseDirection(ball);
-                moveIt(ball);
+                //moveIt(ball);
                 // prevent paddle from running over ball
                 moveResetLast(paddle);
             }
         })
-
+        */
         // inner loop out of bounds areas
         oobAreas.forEach(area => {
 
