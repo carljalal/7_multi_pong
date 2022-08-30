@@ -246,7 +246,7 @@ moveUpdate = () => {
         // if there is no collision ahead, move the paddle
         if(!collisionAhead(paddle)){
             moveIt(paddle);
-            fixDirection(paddle); // if paddle has reached destination, set directions to null
+            if(paddle.clickedDirection) fixDirection(paddle); // if paddle has reached destination, set directions to null
         }
     })
 }
@@ -364,6 +364,7 @@ canvasElement.addEventListener('click', () => {
     }
     // paddle move -- set direction and destination
     else {
+        paddles[paddleSelected].clickedDirection = true;
         paddles[paddleSelected].destX = x;
         paddles[paddleSelected].destY = y;
         paddles[paddleSelected].dirX = x > paddles[paddleSelected].x ? "right" : "left";
@@ -381,10 +382,14 @@ document.addEventListener('keydown', (event) => {
         return;
     }
     else {
+        // no longer using click movement
+        paddles[paddleSelected].clickedDirection = false;
+        // set direction
         if(event.key == "a"  ) paddles[paddleSelected].dirX = "left";
         if(event.key == "d" ) paddles[paddleSelected].dirX = "right";
         if(event.key == "w"    ) paddles[paddleSelected].dirY = "up";
         if(event.key == "s"  ) paddles[paddleSelected].dirY = "down";
+        // deselect
         if(event.key == "q"  )         {
             paddles[paddleSelected].isSelected = false;
             paddles[paddleSelected].dirX = null;
