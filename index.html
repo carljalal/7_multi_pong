@@ -333,9 +333,10 @@ document.addEventListener('keydown', (event) => {
         if(event.key == "ArrowUp"    ) paddle[paddleSelected].dirY = "up";
         if(event.key == "ArrowDown"  ) paddle[paddleSelected].dirY = "down";
         if(event.key == "q"  )         {
+            paddles[paddleSelected].isSelected = false;
+            paddles[paddleSelected].dirX = null;
+            paddles[paddleSelected].dirY = null;
             paddleSelected = null;
-            paddle[paddleSelected].dirX = null;
-            paddle[paddleSelected].dirY = null;
         }
     }
 });
@@ -352,10 +353,7 @@ document.addEventListener('keyup', (event) => {
         if(event.key == "ArrowUp"    ) paddles[paddleSelected].dirY = null;
         if(event.key == "ArrowDown"  ) paddles[paddleSelected].dirY = null;
         if(event.key == "q"  )         {
-            paddles[paddleSelected].isSelected = false;
-            paddles[paddleSelected].dirX = null;
-            paddles[paddleSelected].dirY = null;
-            paddleSelected = null;
+
         }
     }
 });
