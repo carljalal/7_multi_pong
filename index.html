@@ -328,10 +328,10 @@ document.addEventListener('keydown', (event) => {
         return;
     }
     else {
-        if(event.key == "ArrowLeft"  ) paddle[paddleSelected].dirX = "left";
-        if(event.key == "ArrowRight" ) paddle[paddleSelected].dirX = "right";
-        if(event.key == "ArrowUp"    ) paddle[paddleSelected].dirY = "up";
-        if(event.key == "ArrowDown"  ) paddle[paddleSelected].dirY = "down";
+        if(event.key == "ArrowLeft"  ) paddles[paddleSelected].dirX = "left";
+        if(event.key == "ArrowRight" ) paddles[paddleSelected].dirX = "right";
+        if(event.key == "ArrowUp"    ) paddles[paddleSelected].dirY = "up";
+        if(event.key == "ArrowDown"  ) paddles[paddleSelected].dirY = "down";
         if(event.key == "q"  )         {
             paddles[paddleSelected].isSelected = false;
             paddles[paddleSelected].dirX = null;
