@@ -43,6 +43,7 @@ defaultUpdateSpeed  = 10;
 defaultCanvasHeight = "500px";
 defaultCanvasWidth  = "500px";
 defaultCanvasBorder = "2px solid grey"
+defaultAtDestinationThreshold = 3;
 paddleSelected = null;
 
 
@@ -205,16 +206,21 @@ saveLastPosition = (object) => {
 }
 
 
+within = (a,b,range) => {
+    if (Math.abs(a-b) <= range) return true;
+    else return false;
+}
+
 
 // destination check
 atDestination = (object) => {
-    return (object.x == object.destX && object.y == object.destY)
+    return (within(object.x, object.destX, 3) || within(object.y, object.destY, 3));
 }
 
 fixDirection = (object) => {
     if (atDestination(object)) {
-        object.dirX == null;
-        object.dirY == null;
+        object.dirX = null;
+        object.dirY = null;
     }
 }
 
