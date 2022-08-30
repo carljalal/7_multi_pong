@@ -360,6 +360,8 @@ canvasElement.addEventListener('click', () => {
     else {
         paddles[paddleSelected].destX = x;
         paddles[paddleSelected].destY = y;
+        paddles[paddleSelected].dirX = paddles[paddleSelected].x > x ? "right" : "left";
+        paddles[paddleSelected].dirY = paddles[paddleSelected].y > y ? "down" : "up";
     }
 
 });
