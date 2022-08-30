@@ -328,10 +328,10 @@ document.addEventListener('keydown', (event) => {
         return;
     }
     else {
-        if(event.key == "ArrowLeft"  ) paddles[paddleSelected].dirX = "left";
-        if(event.key == "ArrowRight" ) paddles[paddleSelected].dirX = "right";
-        if(event.key == "ArrowUp"    ) paddles[paddleSelected].dirY = "up";
-        if(event.key == "ArrowDown"  ) paddles[paddleSelected].dirY = "down";
+        if(event.key == "a"  ) paddles[paddleSelected].dirX = "left";
+        if(event.key == "d" ) paddles[paddleSelected].dirX = "right";
+        if(event.key == "w"    ) paddles[paddleSelected].dirY = "up";
+        if(event.key == "s"  ) paddles[paddleSelected].dirY = "down";
         if(event.key == "q"  )         {
             paddles[paddleSelected].isSelected = false;
             paddles[paddleSelected].dirX = null;
@@ -348,10 +348,10 @@ document.addEventListener('keyup', (event) => {
         return;
     }
     else {
-        if(event.key == "ArrowLeft"  ) paddles[paddleSelected].dirX = null;
-        if(event.key == "ArrowRight" ) paddles[paddleSelected].dirX = null;
-        if(event.key == "ArrowUp"    ) paddles[paddleSelected].dirY = null;
-        if(event.key == "ArrowDown"  ) paddles[paddleSelected].dirY = null;
+        if(event.key == "a"  ) paddles[paddleSelected].dirX = null;
+        if(event.key == "d" ) paddles[paddleSelected].dirX = null;
+        if(event.key == "w"    ) paddles[paddleSelected].dirY = null;
+        if(event.key == "s"  ) paddles[paddleSelected].dirY = null;
         if(event.key == "q"  )         {
 
         }
